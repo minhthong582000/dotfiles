@@ -7,3 +7,6 @@ export PATH="$HOME/.local/bin:/opt/homebrew/bin:$PATH"
 (( $+commands[go] )) && export PATH="$(go env GOPATH)/bin:$PATH"
 
 typeset -U path  # dedupe PATH entries
+
+# Colored `ls` output (BSD ls on macOS)
+export CLICOLOR=1

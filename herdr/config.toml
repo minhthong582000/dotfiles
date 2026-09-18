@@ -1,0 +1,9 @@
+onboarding = false
+
+[theme]
+name = "dracula"
+# Always dark: don't follow the host terminal's light/dark appearance.
+auto_switch = false
+
+[ui.toast]
+delivery = "system"

@@ -8,7 +8,8 @@ LINKS := \
 	zsh/.zshrc:$(HOME)/.zshrc \
 	zsh/.zprofile:$(HOME)/.zprofile \
 	ghostty/config.ghostty:$(HOME)/.config/ghostty/config.ghostty \
-	starship/starship.toml:$(HOME)/.config/starship.toml
+	starship/starship.toml:$(HOME)/.config/starship.toml \
+	herdr/config.toml:$(HOME)/.config/herdr/config.toml
 
 .DEFAULT_GOAL := help
 .PHONY: help install brew link unlink check switch update

@@ -2,7 +2,7 @@
 # Linked to ~/.config/starship.toml. Inspect: `starship explain`, `starship timings`.
 "$schema" = 'https://starship.rs/config-schema.json'
 
-palette = "catppuccin_mocha"
+palette = "dracula"   # or "catppuccin_mocha" (both defined at the bottom)
 add_newline = false
 command_timeout = 5000   # ms; kubectl/helm/go version calls can be slow
 
@@ -162,3 +162,35 @@ surface0 = "#313244"
 base = "#1e1e2e"
 mantle = "#181825"
 crust = "#11111b"
+
+# --- Dracula -------------------------------------------------------------
+# https://draculatheme.com/contribute — same key names as the Catppuccin palette
+# above so every style in this file works with either; Dracula has fewer hues,
+# so several names share a color.
+[palettes.dracula]
+rosewater = "#f8f8f2"
+flamingo = "#ff79c6"
+pink = "#ff79c6"
+mauve = "#bd93f9"
+red = "#ff5555"
+maroon = "#ff6e6e"
+peach = "#ffb86c"
+yellow = "#f1fa8c"
+green = "#50fa7b"
+teal = "#8be9fd"
+sky = "#8be9fd"
+sapphire = "#8be9fd"
+blue = "#bd93f9"
+lavender = "#8be9fd"
+text = "#f8f8f2"
+subtext1 = "#f8f8f2"
+subtext0 = "#6272a4"
+overlay2 = "#6272a4"
+overlay1 = "#6272a4"
+overlay0 = "#6272a4"
+surface2 = "#44475a"
+surface1 = "#44475a"
+surface0 = "#44475a"
+base = "#282a36"
+mantle = "#21222c"
+crust = "#191a21"

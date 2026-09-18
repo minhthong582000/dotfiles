@@ -15,6 +15,8 @@ A place where I keep my dotfiles, configs and scripts with Nix!
 │   └── conf.d/           # one file per concern: 00-path, 10-history, ... 80-prompt, 90-plugins
 ├── ghostty/
 │   └── config.ghostty    # -> ~/.config/ghostty/config.ghostty
+├── herdr/
+│   └── config.toml       # -> ~/.config/herdr/config.toml
 └── starship/
     └── starship.toml     # -> ~/.config/starship.toml (Catppuccin Mocha, k8s/docker/aws on the right)
 ```
