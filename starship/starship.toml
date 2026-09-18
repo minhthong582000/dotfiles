@@ -1,0 +1,164 @@
+# Starship prompt — https://starship.rs/config/
+# Linked to ~/.config/starship.toml. Inspect: `starship explain`, `starship timings`.
+"$schema" = 'https://starship.rs/config-schema.json'
+
+palette = "catppuccin_mocha"
+add_newline = false
+command_timeout = 5000   # ms; kubectl/helm/go version calls can be slow
+
+# Minimal left prompt
+format = """$username$directory$character"""
+
+# Everything else on the right: git, then infra context, then language versions
+right_format = """\
+$cmd_duration\
+$git_branch\
+$git_status\
+$kubernetes\
+$docker_context\
+$helm\
+$terraform\
+$aws\
+$gcloud\
+$golang\
+$python\
+$nodejs\
+$jobs"""
+
+# Hidden by default unless root/SSH; show_always keeps it on locally too.
+[username]
+show_always = true
+format = "[$user]($style) "
+style_user = "bold pink"
+style_root = "bold red"
+
+[character]
+success_symbol = "[➜](bold green)"
+error_symbol = "[✗](bold red)"
+vimcmd_symbol = "[](bold mauve)"
+
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+truncation_symbol = "…/"
+style = "bold lavender"
+read_only = " 󰌾"
+read_only_style = "red"
+
+[cmd_duration]
+min_time = 2000
+format = "[󱦟 $duration]($style) "
+style = "yellow"
+
+[git_branch]
+symbol = " "
+format = "[$symbol$branch(:$remote_branch)]($style) "
+style = "bold mauve"
+
+[git_status]
+format = "([$all_status$ahead_behind]($style) )"
+style = "peach"
+
+# --- Infra stuff --------------------------------------------------------------
+
+# Disabled by default in starship; always shown once enabled.
+[kubernetes]
+disabled = false
+symbol = "󱃾 "
+format = "[$symbol$context( \\($namespace\\))]($style) "
+style = "bold sapphire"
+
+# Anything that looks like production turns red.
+[[kubernetes.contexts]]
+context_pattern = ".*(prod|prd).*"
+style = "bold red"
+
+# kind-foo -> foo
+[[kubernetes.contexts]]
+context_pattern = "kind-(?P<cluster>.+)"
+context_alias = "kind:$cluster"
+
+# arn:aws:eks:<region>:<account>:cluster/<name> -> eks:<name>
+[[kubernetes.contexts]]
+context_pattern = "arn:aws:eks:[\\w-]+:\\d+:cluster/(?P<cluster>[\\w-]+)"
+context_alias = "eks:$cluster"
+
+# Shown only when the context isn't "default" and a Dockerfile/compose file is present.
+[docker_context]
+symbol = " "
+format = "[$symbol$context]($style) "
+style = "bold blue"
+
+[helm]
+symbol = "⎈ "
+format = "[$symbol($version )]($style)"
+style = "bold teal"
+
+# Workspace only — printing the version runs `terraform version`, which is slow.
+[terraform]
+symbol = "󱁢 "
+format = "[$symbol$workspace]($style) "
+style = "bold lavender"
+
+[aws]
+format = '[$symbol($profile )(\($region\) )(\[$duration\] )]($style)'
+symbol = "󰸏 "
+style = "bold peach"
+expiration_symbol = "󰅙 "
+
+[gcloud]
+symbol = "󱇶 "
+format = '[$symbol$account(@$domain)(\($region\))]($style) '
+style = "bold sky"
+
+# --- Languages (only shown inside matching projects) ---------------------
+
+[golang]
+symbol = " "
+format = "[$symbol($version )]($style)"
+style = "bold sky"
+
+[python]
+symbol = " "
+format = '[$symbol$pyenv_prefix($version )(\($virtualenv\) )]($style)'
+style = "bold yellow"
+
+[nodejs]
+symbol = " "
+format = "[$symbol($version )]($style)"
+style = "bold green"
+
+[jobs]
+symbol = "✦ "
+style = "bold flamingo"
+
+# --- Catppuccin Mocha ----------------------------------------------------
+# https://github.com/catppuccin/starship — names here override ANSI names,
+# so "green", "red", "blue" etc. above resolve to these hex values.
+[palettes.catppuccin_mocha]
+rosewater = "#f5e0dc"
+flamingo = "#f2cdcd"
+pink = "#f5c2e7"
+mauve = "#cba6f7"
+red = "#f38ba8"
+maroon = "#eba0ac"
+peach = "#fab387"
+yellow = "#f9e2af"
+green = "#a6e3a1"
+teal = "#94e2d5"
+sky = "#89dceb"
+sapphire = "#74c7ec"
+blue = "#89b4fa"
+lavender = "#b4befe"
+text = "#cdd6f4"
+subtext1 = "#bac2de"
+subtext0 = "#a6adc8"
+overlay2 = "#9399b2"
+overlay1 = "#7f849c"
+overlay0 = "#6c7086"
+surface2 = "#585b70"
+surface1 = "#45475a"
+surface0 = "#313244"
+base = "#1e1e2e"
+mantle = "#181825"
+crust = "#11111b"

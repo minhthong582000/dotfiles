@@ -1,0 +1,6 @@
+# Secrets / machine-local overrides
+*.local
+.env
+.env.*
+*.bak*
+.DS_Store
